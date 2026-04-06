@@ -1,61 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Romantic Birthday Wish ❤️</title>
+<title>Birthday Love ❤️</title>
 
 <style>
-
-/* ===== BODY ===== */
 body{
     margin:0;
     font-family:'Segoe UI',sans-serif;
     background:linear-gradient(135deg,#000814,#001d3d,#8b0000);
     color:white;
+    overflow:hidden;
+}
+
+/* Pages */
+.page{
+    height:100vh;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
     text-align:center;
-    overflow-x:hidden;
-}
-
-/* ===== STARS BACKGROUND ===== */
-.star{
-    position:fixed;
-    width:2px;
-    height:2px;
-    background:white;
-    animation: twinkle 2s infinite alternate;
-}
-@keyframes twinkle{
-    from{opacity:.2;}
-    to{opacity:1;}
-}
-
-/* ===== CONTAINER ===== */
-.container{
-    margin-top:70px;
     padding:20px;
 }
 
-/* ===== HEADING ===== */
+.active{
+    display:flex;
+}
+
+/* Heading */
 h1{
-    font-size:42px;
     color:#ff4d6d;
-    animation: glow 2s infinite alternate;
+    text-shadow:0 0 20px red;
 }
 
-@keyframes glow{
-    from{ text-shadow:0 0 10px red;}
-    to{ text-shadow:0 0 25px #00b4ff;}
-}
-
-/* ===== MESSAGE ===== */
-.message{
-    font-size:22px;
-    margin-top:15px;
-    color:#ffd6e0;
-}
-
-/* ===== BUTTONS ===== */
+/* Buttons */
 button{
     padding:12px 25px;
     margin:15px;
@@ -66,54 +46,50 @@ button{
     transition:.4s;
 }
 
-.clickBtn{
+.mainBtn{
     background:#00b4ff;
     color:white;
 }
-.clickBtn:hover{
+
+.yes{
     background:#ff4d6d;
-    transform:scale(1.1);
+    color:white;
 }
 
-.yes{background:#ff4d6d;color:white;}
-.no{background:#001d3d;color:white;}
+.no{
+    background:#001d3d;
+    color:white;
+}
 
-.hidden{display:none;}
-
-/* ===== HEARTBEAT ===== */
+/* heartbeat */
 .heartbeat{
     animation:beat 1s infinite;
 }
 @keyframes beat{
-    0%{transform:scale(1);}
     50%{transform:scale(1.2);}
-    100%{transform:scale(1);}
 }
 
-/* ===== LOVE LETTER ===== */
+/* typing text */
+.message{
+    font-size:22px;
+    color:#ffd6e0;
+}
+
+/* love letter */
 .letter{
-    margin-top:25px;
     background:rgba(0,0,0,0.6);
     padding:20px;
     border-radius:15px;
     box-shadow:0 0 15px red;
     line-height:1.8;
-    animation:fade 2s;
 }
 
-@keyframes fade{
-    from{opacity:0;transform:translateY(20px);}
-    to{opacity:1;transform:translateY(0);}
-}
-
-/* ===== FLOATING HEARTS ===== */
+/* hearts */
 .heart{
     position:fixed;
     bottom:-10px;
-    font-size:20px;
     animation:floatUp 6s linear infinite;
 }
-
 @keyframes floatUp{
     0%{transform:translateY(0);opacity:1;}
     100%{transform:translateY(-800px);opacity:0;}
@@ -124,50 +100,72 @@ button{
 
 <body>
 
-<div class="container">
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+    <h1>🎉 Happy Birthday 🥰❤️</h1>
 
-<h1>🎉 Happy Birthday 🥰❤️</h1>
+    <p class="message">
+        😔 Sorry for late wishes 💔 <br>
+        But my love is never late ❤️✨
+    </p>
 
-<p class="message">
-😔 Sorry for late wishes 💔 <br>
-But my love for you is never late ❤️✨
-</p>
+    <p class="message" id="typing"></p>
 
-<p class="message" id="typing"></p>
-
-<button class="clickBtn" onclick="showLove()">Click Me 💌</button>
-
-<!-- LOVE SECTION -->
-<div id="loveSection" class="hidden">
-    <h2 class="heartbeat">💖 I Love You 💖</h2>
-
-    <button class="yes" onclick="yesClicked()">Yes 😍</button>
-    <button class="no" id="noBtn" onclick="noClicked()">No 😜</button>
+    <button class="mainBtn" onclick="nextPage(2)">
+        Click Me 💌
+    </button>
 </div>
 
-<!-- FINAL MESSAGE -->
-<div id="finalMessage" class="hidden">
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+    <h1 class="heartbeat">💖 I Love You 💖</h1>
 
-<h2>❤️ Thank You For Loving Me 🥰</h2>
+    <button class="yes" onclick="nextPage(3)">
+        Yes 😍
+    </button>
 
-<div class="letter">
-💌 Sorry ni poranthappa na paka varla 😅  
-yana enaku appo nadaka therla ❤️<br><br>
-
-💖 Ini apdi nadakathu...  
-unoda ella birthday kum unkuda irupen 🎂✨<br><br>
-
-🌹 Unga amma ku nandri soldren  
-intha maari oru gem enaku kudathuku 💎❤️
+    <button class="no" id="noBtn" onclick="hideNo()">
+        No 😜
+    </button>
 </div>
 
-</div>
+<!-- PAGE 3 -->
+<div id="page3" class="page">
+    <h1>❤️ Thank You For Loving Me 🥰</h1>
 
+    <div class="letter">
+        💌 Sorry ni poranthappa na paka varla 😅  
+        yana enaku appo nadaka therla ❤️<br><br>
+
+        💖 Ini apdi nadakathu...  
+        unoda ella birthday kum unkuda irupen 🎂✨<br><br>
+
+        🌹 Unga amma ku nandri soldren  
+        intha maari oru gem enaku kudathuku 💎❤️
+    </div>
 </div>
 
 <script>
 
-/* ===== TYPING EFFECT ===== */
+/* PAGE SWITCH */
+function nextPage(pageNumber){
+    document.querySelectorAll(".page")
+        .forEach(p=>p.classList.remove("active"));
+
+    document.getElementById("page"+pageNumber)
+        .classList.add("active");
+
+    if(pageNumber===3) createHearts();
+}
+
+/* NO BUTTON ESCAPE */
+function hideNo(){
+    let btn=document.getElementById("noBtn");
+    btn.style.transform="rotate(360deg) scale(0)";
+    setTimeout(()=>btn.style.display="none",400);
+}
+
+/* TYPING EFFECT */
 const text="Today is special because YOU were born 💖✨";
 let i=0;
 function typing(){
@@ -179,25 +177,7 @@ function typing(){
 }
 typing();
 
-/* ===== SHOW LOVE ===== */
-function showLove(){
-    document.getElementById("loveSection").classList.remove("hidden");
-}
-
-/* ===== YES CLICK ===== */
-function yesClicked(){
-    document.getElementById("finalMessage").classList.remove("hidden");
-    createHearts();
-}
-
-/* ===== NO BUTTON ESCAPE ===== */
-function noClicked(){
-    let btn=document.getElementById("noBtn");
-    btn.style.transform="rotate(360deg) scale(0)";
-    setTimeout(()=>btn.style.display="none",400);
-}
-
-/* ===== FLOATING HEARTS ===== */
+/* FLOATING HEARTS */
 function createHearts(){
     setInterval(()=>{
         let heart=document.createElement("div");
@@ -208,15 +188,6 @@ function createHearts(){
         document.body.appendChild(heart);
         setTimeout(()=>heart.remove(),6000);
     },300);
-}
-
-/* ===== STARS ===== */
-for(let i=0;i<80;i++){
-    let star=document.createElement("div");
-    star.className="star";
-    star.style.left=Math.random()*100+"vw";
-    star.style.top=Math.random()*100+"vh";
-    document.body.appendChild(star);
 }
 
 </script>
